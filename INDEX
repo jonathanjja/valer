@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta para Valeria</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffcccc, #cc99ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            width: 400px;
+            height: 300px;
+            background-color: white;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: black;
+        }
+        .button {
+            background-color: pink;
+            color: white;
+            font-size: 14px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <p>Abriendo la carta...</p>
+    </div>
+    <button class="button" onclick="openCard()">Abrir la carta</button>
+
+    <script>
+        function createGradient() {
+            const body = document.body;
+            const height = body.clientHeight;
+            for (let i = 0; i < height; i++) {
+                const r = Math.floor(255 * (i / height));
+                const g = Math.floor(255 * ((height - i) / height));
+                const b = Math.floor(255 * (i / height));
+                const color = `rgb(${r}, ${g}, ${b})`;
+                body.style.background = `linear-gradient(to bottom, #ffcccc, #cc99ff)`;
+            }
+        }
+
+        function openCard() {
+            const card = document.getElementById('card');
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i >= 100) {
+                    clearInterval(interval);
+                    card.innerHTML = '<p>Will you be my Valentine?</p>';
+                    alert("Para Valeria: Will you be my Valentine?");
+                } else {
+                    card.innerHTML = '<p>Abriendo la carta...</p>';
+                    i++;
+                }
+            }, 20);
+        }
+
+        createGradient();
+    </script>
+</body>
+</html>
